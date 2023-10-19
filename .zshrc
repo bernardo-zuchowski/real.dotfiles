@@ -131,3 +131,6 @@ alias ga="git add"
 alias gc="git commit"
 alias gpsh="git push"
 alias gw="git worktree"
+alias vim="nvim"
+# job alias
+alias start="rm -rf node_modules package-lock.json local.settings.json && git pull origin development && ln -s ../../../../local.settings.json local.settings.json && npm install"

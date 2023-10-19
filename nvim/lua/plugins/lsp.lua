@@ -69,7 +69,8 @@ return {
       'lua_ls',
       'jsonls',
       'eslint',
-      'rust_analyzer'
+      'rust_analyzer',
+      'clangd',
     })
 
     -- Has conflict with jump list keymap <C-i>
@@ -88,6 +89,7 @@ return {
         ['tsserver'] = { 'javascript', 'typescript' },
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
+        ['clangd'] = { 'c', 'c++' },
       }
     })
 
@@ -96,6 +98,26 @@ return {
       warn = 'W',
       hint = 'H',
       info = 'I'
+    })
+
+    require('lspconfig').tsserver.setup({
+      handlers = {
+        ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+          if result.diagnostics ~= nil then
+            local idx = 1
+            while idx <= #result.diagnostics do
+              -- look for diagnostics codes here:
+              -- https://github.com/microsoft/TypeScript/blob/main/src/compiler/diagnosticMessages.json
+              if result.diagnostics[idx].code == 80001 then
+                table.remove(result.diagnostics, idx)
+              else
+                idx = idx + 1
+              end
+            end
+          end
+          vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+        end,
+      },
     })
 
     -- IMPORTANT: make sure to setup neodev BEFORE lspconfig

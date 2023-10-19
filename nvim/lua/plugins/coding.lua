@@ -40,13 +40,13 @@ return {
     },
   },
   { 'mg979/vim-visual-multi' },
-  -- {
-  --   'echasnovski/mini.pairs',
-  --   version = false,
-  --   config = function()
-  --     require("mini.pairs").setup()
-  --   end,
-  -- },
+  {
+    'echasnovski/mini.pairs',
+    version = false,
+    config = function()
+      require("mini.pairs").setup()
+    end,
+  },
   {
     'echasnovski/mini.splitjoin',
     version = false,
@@ -66,13 +66,13 @@ return {
       })
     end,
   },
-  -- {
-  --   'echasnovski/mini.ai',
-  --   version = false,
-  --   config = function()
-  --     require("mini.ai").setup()
-  --   end,
-  -- },
+  {
+    'echasnovski/mini.ai',
+    version = false,
+    config = function()
+      require("mini.ai").setup()
+    end,
+  },
   {
     'echasnovski/mini.cursorword',
     version = false,
@@ -106,6 +106,11 @@ return {
       { '<leader>h2', function() require("harpoon.ui").nav_file(2) end,         desc = '[h]arpoon [2]' },
       { '<leader>h3', function() require("harpoon.ui").nav_file(3) end,         desc = '[h]arpoon [3]' },
       { '<leader>h4', function() require("harpoon.ui").nav_file(4) end,         desc = '[h]arpoon [4]' },
+      { '<leader>h5', function() require("harpoon.ui").nav_file(5) end,         desc = '[h]arpoon [5]' },
+      { '<leader>h6', function() require("harpoon.ui").nav_file(6) end,         desc = '[h]arpoon [6]' },
+      { '<leader>h7', function() require("harpoon.ui").nav_file(7) end,         desc = '[h]arpoon [7]' },
+      { '<leader>h8', function() require("harpoon.ui").nav_file(8) end,         desc = '[h]arpoon [8]' },
+      { '<leader>h9', function() require("harpoon.ui").nav_file(9) end,         desc = '[h]arpoon [9]' },
     }
   },
   {
@@ -113,5 +118,12 @@ return {
     keys = {
       { '<leader>u', '<cmd>UndotreeToggle<cr>', desc = 'Toggle [u]ndo tree' }
     }
+  },
+  {
+    'jdhao/better-escape.vim',
+    event = 'InsertEnter',
+    init = function()
+      vim.g.better_escape_shortcut = { 'jk', 'kj', 'jj', 'kk' }
+    end
   },
 }

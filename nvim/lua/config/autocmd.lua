@@ -1,5 +1,3 @@
-local caps_group = vim.api.nvim_create_augroup("CapsLockOff", { clear = true })
-
 local sh_command = function(args, output)
   return vim.api.nvim_cmd({
     cmd = "!",
@@ -8,8 +6,9 @@ local sh_command = function(args, output)
 end
 
 -- Auto disable the capslock after leave insert mode
--- Only work in Linux (tested in Arch based Linux distro)
+-- Only work in Linux (tested in Arch/Ubuntu based Linux distro)
 -- Needs github.com/jordansissel/xdotool
+local caps_group = vim.api.nvim_create_augroup("CapsLockOff", { clear = true })
 vim.api.nvim_create_autocmd("InsertLeave", {
   callback = function()
     local caps_lock_state = sh_command("xset -q")
@@ -20,4 +19,15 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     end
   end,
   group = caps_group,
+})
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
 })

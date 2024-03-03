@@ -27,75 +27,40 @@ return {
   { 'tpope/vim-fugitive' },
   { 'tpope/vim-rhubarb' },
   { 'tpope/vim-sleuth' },
+  -- {
+  --   "tpope/vim-dadbod",
+  --   dependencies = {
+  --     "kristijanhusak/vim-dadbod-ui",
+  --     "kristijanhusak/vim-dadbod-completion",
+  --   },
+  --   keys = {
+  --     { "<leader>Dt", "<cmd>DBUIToggle<cr>",        desc = "Toggle UI" },
+  --     { "<leader>Df", "<cmd>DBUIFindBuffer<cr>",    desc = "Find Buffer" },
+  --     { "<leader>Dr", "<cmd>DBUIRenameBuffer<cr>",  desc = "Rename Buffer" },
+  --     { "<leader>Dq", "<cmd>DBUILastQueryInfo<cr>", desc = "Last Query Info" },
+  --   },
+  -- },
+  -- { 'mg979/vim-visual-multi' },
+  -- {
+  --   'echasnovski/mini.pairs',
+  --   version = false,
+  --   config = function()
+  --     require("mini.pairs").setup()
+  --   end,
+  -- },
   {
-    "tpope/vim-dadbod",
-    dependencies = {
-      "kristijanhusak/vim-dadbod-ui",
-      "kristijanhusak/vim-dadbod-completion",
-    },
-    keys = {
-      { "<leader>Dt", "<cmd>DBUIToggle<cr>",        desc = "Toggle UI" },
-      { "<leader>Df", "<cmd>DBUIFindBuffer<cr>",    desc = "Find Buffer" },
-      { "<leader>Dr", "<cmd>DBUIRenameBuffer<cr>",  desc = "Rename Buffer" },
-      { "<leader>Dq", "<cmd>DBUILastQueryInfo<cr>", desc = "Last Query Info" },
-    },
-  },
-  { 'mg979/vim-visual-multi' },
-  {
-    'echasnovski/mini.pairs',
-    version = false,
-    config = function()
-      require("mini.pairs").setup()
-    end,
-  },
-  {
-    'echasnovski/mini.splitjoin',
-    version = false,
+    'echasnovski/mini.nvim',
     config = function()
       require("mini.splitjoin").setup()
-    end,
-  },
-  {
-    'echasnovski/mini.surround',
-    version = false,
-    config = function()
       require("mini.surround").setup({
         custom_surroundings = {
           ['('] = { output = { left = '(', right = ')' } },
           ['['] = { output = { left = '[', right = ']' } },
         }
       })
-    end,
-  },
-  {
-    'echasnovski/mini.ai',
-    version = false,
-    config = function()
       require("mini.ai").setup()
-    end,
-  },
-  {
-    'echasnovski/mini.cursorword',
-    version = false,
-    config = function()
       require("mini.cursorword").setup()
-    end,
-  },
-  {
-    'echasnovski/mini.move',
-    version = false,
-    config = function()
       require("mini.move").setup()
-    end,
-  },
-  {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
-    keys = {
-      { '<leader>f', '<cmd>HopChar1<cr>', desc = '[f]ind with Hop' }
-    },
-    config = function()
-      require('hop').setup()
     end
   },
   {
@@ -121,10 +86,107 @@ return {
     }
   },
   {
-    'jdhao/better-escape.vim',
-    event = 'InsertEnter',
-    init = function()
-      vim.g.better_escape_shortcut = { 'jk', 'kj', 'jj', 'kk' }
+    "max397574/better-escape.nvim",
+    config = function()
+      require('better_escape').setup({
+        mapping = { "jj", "kk", "jk", "kj", "ww", "gg" },
+        timeout = 1000,
+      })
     end
   },
+  -- {
+  --   "rest-nvim/rest.nvim",
+  --   dependencies = { { "nvim-lua/plenary.nvim" } },
+  --   commit = "8b62563",
+  --   config = function()
+  --     require("rest-nvim").setup({
+  --       -- Open request results in a horizontal split
+  --       result_split_horizontal = false,
+  --       -- Keep the http file buffer above|left when split horizontal|vertical
+  --       result_split_in_place = false,
+  --       -- Skip SSL verification, useful for unknown certificates
+  --       skip_ssl_verification = false,
+  --       -- Encode URL before making request
+  --       encode_url = true,
+  --       -- Highlight request on run
+  --       highlight = {
+  --         enabled = true,
+  --         timeout = 150,
+  --       },
+  --       result = {
+  --         -- toggle showing URL, HTTP info, headers at top the of result window
+  --         show_url = true,
+  --         -- show the generated curl command in case you want to launch
+  --         -- the same request via the terminal (can be verbose)
+  --         show_curl_command = false,
+  --         show_http_info = true,
+  --         show_headers = true,
+  --         -- executables or functions for formatting response body [optional]
+  --         -- set them to false if you want to disable them
+  --         formatters = {
+  --           json = "jq",
+  --           html = function(body)
+  --             return vim.fn.system({ "tidy", "-i", "-q", "-" }, body)
+  --           end
+  --         },
+  --       },
+  --       -- Jump to request line on run
+  --       jump_to_request = false,
+  --       env_file = '.env',
+  --       custom_dynamic_variables = {},
+  --       yank_dry_run = true,
+  --     })
+  --   end,
+  --   keys = {
+  --     { '<leader>xv', function() require('rest-nvim').run(true) end, desc = 'E[x]ecute pre[v]iew of request' },
+  --     { '<leader>xr', function() require('rest-nvim').run() end,     desc = 'E[x]ecute [r]equest' },
+  --     { '<leader>xl', function() require('rest-nvim').last() end,    desc = 'E[x]ecute [l]ast request' }
+  --   },
+  --   lazy = false,
+  -- },
+  {
+    'nvim-pack/nvim-spectre',
+    keys = {
+      {
+        '<leader>St',
+        '<cmd>lua require("spectre").toggle()<CR>',
+        desc = "[S]pectre [t]oggle",
+      },
+      {
+        '<leader>Sw',
+        '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+        desc = "[S]pectre - Search current [w]ord",
+      },
+      {
+        '<leader>Sw',
+        '<esc><cmd>lua require("spectre").open_visual()<CR>',
+        desc = "[S]pectre - Search current [w]ord",
+        mode = 'v',
+      },
+      {
+        '<leader>Sf',
+        '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+        desc = "[S]pectre - Search on current [f]ile",
+      },
+    }
+  },
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter',
+    config = function()
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+      vim.keymap.set('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+      vim.keymap.set('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+      vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+    end
+  },
+  {
+    'ThePrimeagen/refactoring.nvim',
+    config = function()
+      require('refactoring').setup({
+
+      })
+    end
+  }
 }

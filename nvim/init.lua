@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
 vim.g.netrw_hide = 0
--- vim.g.netrw_keepdir = 0
+-- vim.g.netrw_keepdir = 1
 -- vim.api.nvim_set_hl(1, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 

@@ -26,6 +26,7 @@ return {
   { 'numToStr/Comment.nvim', opts = {} },
   { 'tpope/vim-fugitive' },
   { 'tpope/vim-rhubarb' },
+  { 'tpope/vim-sleuth' },
   {
     "tpope/vim-dadbod",
     dependencies = {

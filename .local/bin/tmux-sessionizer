@@ -1,17 +1,29 @@
 #!/usr/bin/env bash
 
-branches=~/work/onboard-serverless/branches
-# work branches patterns
-cr=$branches/cr
-feature=$branches/feature
-bugfix=$branches/bugfix
-test=$branches/test
-development=$branches/development
+serverless_repo=~/work/onboard-serverless/branches
+# work serverless_repo patterns
+serverless_cr=$serverless_repo/cr
+serverless_feature=$serverless_repo/feature
+serverless_bugfix=$serverless_repo/bugfix
+serverless_test=$serverless_repo/test
+serverless_development=$serverless_repo/development
+
+online_token_repo=~/work/online-token/branches
+# work online_token_repo patterns
+online_cr=$online_token_repo/cr
+online_feature=$online_token_repo/feature
+online_bugfix=$online_token_repo/bugfix
+online_test=$online_token_repo/test
+online_develop=$online_token_repo/develop
+
+# personal
+personal=~/personal
+personal_develop=$personal/develop
 
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-  selected=$(find $cr $feature $bugfix $test $development ~/ ~/work ~/personal ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+  selected=$(find $serverless_cr $serverless_feature $serverless_bugfix $serverless_test $serverless_development $online_cr $online_feature $online_bugfix $online_test $online_develop $personal_develop ~/ ~/work ~/personal ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then

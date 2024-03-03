@@ -111,7 +111,11 @@ USE_POWERLINE="true"
 # if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
 #   source /usr/share/zsh/manjaro-zsh-prompt
 # fi
-source /usr/share/nvm/init-nvm.sh
+
+# NVM
+# source /usr/share/nvm/init-nvm.sh
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 export PATH=$PATH:/home/cocadapreta/bin
 
@@ -121,7 +125,9 @@ export PATH=$PATH:/home/cocadapreta/bin
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 # export PATH=$PATH:/home/cocadapreta/lib/azure-function-cli
 
-source '/home/cocadapreta/lib/azure-cli/az.completion'
+# source '/home/cocadapreta/lib/azure-cli/az.completion'
+
+export EDITOR='/usr/local/bin/nvim'
 
 alias nr="npm run"
 alias ni="npm install"

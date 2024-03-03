@@ -71,6 +71,7 @@ return {
       'eslint',
       'rust_analyzer',
       'clangd',
+      -- 'gopls',
     })
 
     -- Has conflict with jump list keymap <C-i>
@@ -90,6 +91,7 @@ return {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
         ['clangd'] = { 'c', 'c++' },
+        ['gopls'] = { 'go' },
       }
     })
 

@@ -89,7 +89,7 @@ return {
     "max397574/better-escape.nvim",
     config = function()
       require('better_escape').setup({
-        mapping = { "jj", "kk", "jk", "kj", "ww", "gg" },
+        mapping = { "jj", "kk", "jk", "kj" },
         timeout = 1000,
       })
     end
@@ -169,17 +169,6 @@ return {
         desc = "[S]pectre - Search on current [f]ile",
       },
     }
-  },
-  {
-    'Exafunction/codeium.vim',
-    event = 'BufEnter',
-    config = function()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-      vim.keymap.set('i', '<C-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-      vim.keymap.set('i', '<C-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-      vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-    end
   },
   {
     'ThePrimeagen/refactoring.nvim',

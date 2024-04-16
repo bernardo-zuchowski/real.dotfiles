@@ -88,5 +88,55 @@ return {
   {
     "folke/zen-mode.nvim",
     opts = {}
+  },
+  {
+    "SmiteshP/nvim-navic",
+    config = function()
+      local navic = require("nvim-navic")
+      navic.setup({
+        lsp = {
+          auto_attach = true,
+        },
+        icons = {
+          File          = "",
+          Module        = "",
+          Namespace     = "",
+          Package       = "",
+          Class         = "",
+          Method        = "",
+          Property      = "",
+          Field         = "",
+          Constructor   = "",
+          Enum          = "",
+          Interface     = "",
+          Function      = "",
+          Variable      = "",
+          Constant      = "",
+          String        = "",
+          Number        = "",
+          Boolean       = "",
+          Array         = "",
+          Object        = "",
+          Key           = "",
+          Null          = "",
+          EnumMember    = "",
+          Struct        = "",
+          Event         = "",
+          Operator      = "",
+          TypeParameter = "",
+        },
+      })
+
+      require("lualine").setup {
+        winbar = {
+          lualine_c = {
+            {
+              function() return navic.get_location() end,
+              cond = function() return navic.is_available() end
+            }
+          }
+        }
+      }
+    end
   }
 }

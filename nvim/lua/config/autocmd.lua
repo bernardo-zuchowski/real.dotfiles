@@ -11,11 +11,13 @@ end
 local caps_group = vim.api.nvim_create_augroup("CapsLockOff", { clear = true })
 vim.api.nvim_create_autocmd("InsertLeave", {
   callback = function()
-    local caps_lock_state = sh_command("xset -q")
-    local caps_lock_on = string.match(caps_lock_state, "00: Caps Lock:%s+ on")
+    if (vim.bo.buftype ~= 'acwrite') then
+      local caps_lock_state = sh_command("xset -q")
+      local caps_lock_on = string.match(caps_lock_state, "00: Caps Lock:%s+ on")
 
-    if caps_lock_on then
-      sh_command("xdotool key Caps_Lock")
+      if caps_lock_on then
+        sh_command("xdotool key Caps_Lock")
+      end
     end
   end,
   group = caps_group,
